@@ -28,6 +28,8 @@ services:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        cap_add:
+            - SYS_NICE  # CAP_SYS_NICE
         volumes:
             - db_vol:/var/lib/mysql
             - iiq_vol:/usr/local/tomcat/webapps/identityiq
