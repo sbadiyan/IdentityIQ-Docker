@@ -11,6 +11,8 @@ COPY ./iiq/identityiq.war .
 COPY ./iiq/identityiq-8.3p1.jar .
 RUN jar -xvf identityiq.war
 RUN jar xf identityiq-8.3p1.jar
+RUN rm identityiq.war
+RUN rm identityiq-8.3p1.jar
 
 COPY ./iiq/iiq.properties ./WEB-INF/classes
 
