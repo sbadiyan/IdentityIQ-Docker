@@ -1,4 +1,5 @@
-read -p "Please specify the version and patch number of IIQ (i.e. 8.3p1) you wish to install: " IIQ_VERSION
+
+read -p "Please specify the version and patch number of IIQ (i.e. 8.3p1) you wish to install:  " IIQ_VERSION
 echo ""
 
 if (test "$IIQ_VERSION" = "")
