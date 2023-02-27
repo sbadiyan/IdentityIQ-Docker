@@ -6,7 +6,7 @@ until mysql -u root -h db -e "use identityiq" -proot &> /dev/null
 do
   echo "Waiting for identityiq database creation"
   echo "Attempts: $ATTEMPTS"
-  sleep 5
+  sleep 10
   ATTEMPTS=$((ATTEMPTS+1))
 done
 
