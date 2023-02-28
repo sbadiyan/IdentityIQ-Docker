@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IIQ_VERSION=""
-PORT=""
+IIQ_PORT=""
 USERNAME=""
 PASS=""
 
@@ -38,11 +38,34 @@ fi
 sed -i~ '/^IIQ_VERSION=/s/=.*/='$IIQ_VERSION'/' .env
 
 if test $? -eq 0; then
-        echo 'IIQ version set to ' $IIQ_VERSION >&2
+        echo 'IIQ version set to' $IIQ_VERSION >&2
 else
         echo 'IIQ version selection failed' >&2
         exit 1
 fi
+
+IIQ_PORT=$(osascript -e '
+tell application "Finder"
+    activate
+    try
+        display dialog "Please specify the port for IIQ:" with title "Select IIQ port" default answer "8080"
+        set IIQ_PORT to the (text returned of the result)
+    on error number -128
+        set IIQ_PORT to ""
+    end try
+    return IIQ_PORT
+end tell')
+
+echo "Port set to" $IIQ_PORT
+
+if (test "$IIQ_PORT" = "")
+    then
+        echo "The port cannot be blank" >&2
+        exit 1;
+fi
+
+sed -i~ '/^IIQ_PORT=/s/=.*/='$IIQ_PORT'/' .env
+
 
 USERNAME=$(osascript -e '
 tell application "Finder"
@@ -78,6 +101,5 @@ end tell')
 echo "Running docker compose"
 /usr/local/bin/docker login -u $USERNAME -p $PASS identityiqdocker.azurecr.io
 /usr/local/bin/docker compose up
-echo "Done" >&2
-echo "IIQ can be accessed at http://localhost:8080/identityiq"
+
 exit 1;
