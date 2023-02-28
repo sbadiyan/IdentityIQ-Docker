@@ -30,4 +30,17 @@ echo "MySQL is running"
 
 echo "Starting tomcat"
 cd /usr/local/tomcat/bin
-catalina.sh run
+startup.sh
+
+echo "Waiting for IdentityIQ startup...Listening on port $IIQ_PORT"
+sleep 10
+
+while ! netstat -an | grep -q "$IIQ_PORT .*LISTEN"; do
+    echo "Waiting for IdentityIQ startup...Listening on port $IIQ_PORT"
+    sleep 5
+done
+echo "Done"
+echo "IdentityIQ can be accessed at http://localhost:$IIQ_PORT/identityiq"
+
+#do nothing until stopped
+tail -f /dev/null
