@@ -21,6 +21,7 @@ RUN apt install -y vim
 RUN apt install sudo
 RUN usermod -aG sudo root
 RUN apt install -y mysql-client
+RUN apt install net-tools
 
 EXPOSE 8080
 
