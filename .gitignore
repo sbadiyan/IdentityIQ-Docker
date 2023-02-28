@@ -1,3 +1,4 @@
 
 *.war
 *.jar
+IdentityIQ.app/Contents/Resources/.env~
