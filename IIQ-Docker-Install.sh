@@ -15,6 +15,18 @@ else
     exit 1;
 fi
 
+#Open Docker, only if is not running
+if (! /usr/local/bin/docker stats --no-stream ); then
+  # On Mac OS this would be the terminal command to launch Docker
+  open --background -a Docker
+ #Wait until Docker daemon is running and has completed initialisation
+while (! /usr/local/bin/docker stats --no-stream &> /dev/null); do 
+  # Docker takes a few seconds to initialize
+  echo "Waiting for Docker to launch..."
+  sleep 3
+done
+fi
+
 
 IIQ_VERSION=$(osascript -e '
 tell application "Finder"
