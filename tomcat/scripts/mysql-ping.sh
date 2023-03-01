@@ -35,7 +35,7 @@ startup.sh
 echo "Waiting for IdentityIQ startup...Listening on port $IIQ_PORT"
 sleep 10
 
-while ! netstat -an | grep -q "$IIQ_PORT .*LISTEN"; do
+while ! netstat -an | grep "$IIQ_PORT .*LISTEN"; do
     echo "Waiting for IdentityIQ startup...Listening on port $IIQ_PORT"
     sleep 5
 done
