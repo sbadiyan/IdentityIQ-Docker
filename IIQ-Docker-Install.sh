@@ -2,8 +2,10 @@
 
 IIQ_VERSION=""
 IIQ_PORT=""
+MYSQL_PORT=""
 USERNAME=""
 PASS=""
+ENVFILE=".env"
 
 if (/usr/local/bin/docker --version | grep -q 'Docker version') 
 then
@@ -13,7 +15,6 @@ else
     exit 1;
 fi
 
-while  [ "$IIQ_VERSION" = "" ] ; do
 
 IIQ_VERSION=$(osascript -e '
 tell application "Finder"
@@ -27,7 +28,6 @@ tell application "Finder"
     return IIQ_VERSION
 end tell')
 
-done
 
 if (test "$IIQ_VERSION" = "")
     then
@@ -35,7 +35,7 @@ if (test "$IIQ_VERSION" = "")
         exit 1;
 fi
 
-sed -i~ '/^IIQ_VERSION=/s/=.*/='$IIQ_VERSION'/' .env
+echo "IIQ_VERSION=$IIQ_VERSION" >> $ENVFILE
 
 if test $? -eq 0; then
         echo 'IIQ version set to' $IIQ_VERSION >&2
@@ -64,7 +64,29 @@ if (test "$IIQ_PORT" = "")
         exit 1;
 fi
 
-sed -i~ '/^IIQ_PORT=/s/=.*/='$IIQ_PORT'/' .env
+echo "IIQ_PORT=$IIQ_PORT" >> $ENVFILE
+
+MYSQL_PORT=$(osascript -e '
+tell application "Finder"
+    activate
+    try
+        display dialog "Please specify the port for MySQL:" with title "Select MySQL port" default answer "3306"
+        set MYSQL_PORT to the (text returned of the result)
+    on error number -128
+        set MYSQL_PORT to ""
+    end try
+    return MYSQL_PORT
+end tell')
+
+echo "MySQL port set to" $MYSQL_PORT
+
+if (test "$MYSQL_PORT" = "")
+    then
+        echo "The MySQL port cannot be blank" >&2
+        exit 1;
+fi
+
+echo "MYSQL_PORT=$MYSQL_PORT" >> $ENVFILE
 
 
 USERNAME=$(osascript -e '
