@@ -16,14 +16,14 @@ else
 fi
 
 #Open Docker, only if is not running
-if (! /usr/local/bin/docker stats --no-stream ); then
+if (! /usr/local/bin/docker stats --no-stream &> /dev/null); then
   # On Mac OS this would be the terminal command to launch Docker
   open --background -a Docker
  #Wait until Docker daemon is running and has completed initialisation
 while (! /usr/local/bin/docker stats --no-stream &> /dev/null); do 
   # Docker takes a few seconds to initialize
   echo "Waiting for Docker to launch..."
-  sleep 3
+  sleep 6
 done
 fi
 
@@ -68,7 +68,7 @@ tell application "Finder"
     return IIQ_PORT
 end tell')
 
-echo "Port set to" $IIQ_PORT
+echo "IIQ port set to" $IIQ_PORT
 
 if (test "$IIQ_PORT" = "")
     then
@@ -100,40 +100,75 @@ fi
 
 echo "MYSQL_PORT=$MYSQL_PORT" >> $ENVFILE
 
-
-USERNAME=$(osascript -e '
-tell application "Finder"
-    activate
-    try
-        display dialog "Please enter your username:" with title "Enter username" default answer "edgile"
-        set USERNAME to the (text returned of the result)
-    on error number -128
-        set USERNAME to ""
-    end try
-    return USERNAME
-end tell')
-
-
-if (test "$USERNAME" = "")
+if (! /usr/local/bin/docker compose up) 
     then
-        echo "The username cannot be blank" >&2
-        exit 1;
+        USERNAME=$(osascript -e '
+        tell application "Finder"
+            activate
+            try
+                display dialog "Please enter your username:" with title "Enter username" default answer "edgile"
+                set USERNAME to the (text returned of the result)
+            on error number -128
+                set USERNAME to ""
+            end try
+            return USERNAME
+        end tell')
+
+
+        if (test "$USERNAME" = "")
+            then
+                echo "The username cannot be blank" >&2
+                exit 1;
+        fi
+
+        PASS=$(osascript -e '
+        tell application "Finder"
+            activate
+            try
+                display dialog "Please enter your password:" with title "Enter password" default answer ""
+                set PASS to the (text returned of the result)
+            on error number -128
+                set PASS to ""
+            end try
+            return PASS
+        end tell')
+        
+        while (! /usr/local/bin/docker login -u $USERNAME -p $PASS identityiqdocker.azurecr.io &> /dev/null); do
+            echo "Incorrect username/password. Please try again."
+            USERNAME=$(osascript -e '
+            tell application "Finder"
+                activate
+                try
+                    display dialog "Please enter your username:" with title "Enter username" default answer "edgile"
+                    set USERNAME to the (text returned of the result)
+                on error number -128
+                    set USERNAME to ""
+                end try
+                return USERNAME
+            end tell')
+
+
+            if (test "$USERNAME" = "")
+                then
+                    echo "The username cannot be blank" >&2
+                    exit 1;
+            fi
+
+            PASS=$(osascript -e '
+            tell application "Finder"
+                activate
+                try
+                    display dialog "Please enter your password:" with title "Enter password" default answer ""
+                    set PASS to the (text returned of the result)
+                on error number -128
+                    set PASS to ""
+                end try
+                return PASS
+            end tell')
+        done
+        echo "Login successful"
+        echo "Running docker compose"
+        /usr/local/bin/docker compose up
 fi
-
-PASS=$(osascript -e '
-tell application "Finder"
-    activate
-    try
-        display dialog "Please enter your password:" with title "Enter password" default answer ""
-        set PASS to the (text returned of the result)
-    on error number -128
-        set PASS to ""
-    end try
-    return PASS
-end tell')
-
-echo "Running docker compose"
-/usr/local/bin/docker login -u $USERNAME -p $PASS identityiqdocker.azurecr.io
-/usr/local/bin/docker compose up
 
 exit 1;
