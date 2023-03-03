@@ -60,7 +60,7 @@ IIQ_PORT=$(osascript -e '
 tell application "Finder"
     activate
     try
-        display dialog "Please specify the port for IIQ:" with title "Select IIQ port" default answer "8080"
+        display dialog "Please specify the port for IIQ:" with title "Select IIQ port" default answer "7070"
         set IIQ_PORT to the (text returned of the result)
     on error number -128
         set IIQ_PORT to ""
@@ -82,7 +82,7 @@ MYSQL_PORT=$(osascript -e '
 tell application "Finder"
     activate
     try
-        display dialog "Please specify the port for MySQL:" with title "Select MySQL port" default answer "3306"
+        display dialog "Please specify the port for MySQL:" with title "Select MySQL port" default answer "3307"
         set MYSQL_PORT to the (text returned of the result)
     on error number -128
         set MYSQL_PORT to ""
