@@ -1,70 +1,114 @@
 <!-- :
 @echo off 
 
-SET ENVFILE=.env
-
-for /f "tokens=1-5 delims=|" %%a in ('mshta.exe "%~f0"') do (
-    SET "IIQ_VERSION=%%a"
-    SET "IIQ_PORT=%%b"
-    SET "MYSQL_PORT=%%c"
-    SET "USERNAME=%%d"
-    SET "PASS=%%e"
+set /a LAUNCHES = 0
+:open-form
+set /a LAUNCHES = LAUNCHES + 1
+for /f "tokens=1-6 delims=|" %%a in ('mshta.exe "%~f0" "%LAUNCHES%"') do (
+    set "IIQ_VERSION=%%a"
+    set "IIQ_PORT=%%b"
+    set "MYSQL_PORT=%%c"
+    set "USERNAME=%%d"
+    set "PASS=%%e"
+    set "BUTTON_CLICKED=%%f"
 )
 
 echo IIQ_VERSION=%IIQ_VERSION% > .env
 echo IIQ_PORT=%IIQ_PORT% >> .env
-echo MYSQL_PORT=%MYSQL_PORT% >> .env
-echo USERNAME is %USERNAME%
-echo PASS is %PASS%
+echo MYSQL_PORT=%MYSQL_PORT% >>  .env
+if "%BUTTON_CLICKED%" == "cancel" (
+    exit /B
+)
 
-docker --version > NUL
+if [%BUTTON_CLICKED%] == [] (
+    exit /B
+)
 
-IF NOT %ERRORLEVEL% == 0 (
+wsl --update
+
+docker --version > nul 2>&1
+
+if not %ERRORLEVEL% == 0 (
     echo Docker must be installed and running. Please visit https://www.docker.com to download the latest version.
-    EXIT /B
-) ELSE echo Docker is installed.
+    exit /B
+) else echo Docker is installed.
 
-docker login -u %USERNAME% -p %PASS% identityiqdocker.azurecr.io
+docker stats --no-stream > nul 2>&1
+if not %ERRORLEVEL% == 0 (
+    powershell -Command "start 'C:\Program Files\Docker\Docker\Docker Desktop.exe'"
+)
+
+:wait-for-docker
+docker stats --no-stream > nul 2>&1
+if not %ERRORLEVEL% == 0 (
+    echo Waiting for Docker to launch...
+    timeout /t 6 /nobreak > nul
+    goto :wait-for-docker 
+)
+
+docker login -u %USERNAME% -p %PASS% identityiqdocker.azurecr.io > nul 2>&1
+if not %ERRORLEVEL% == 0 (
+    echo Invalid username or password. Please try again.
+    goto :open-form
+)
+echo Login succeeded
 docker compose up
 
-timeout /t 10
+timeout /t 30
 -->
 
 <html>
 <head>
-    <HTA:APPLICATION SCROLL="no" ICON="icons/sp_favicon.ico">
+    <HTA:APPLICATION id="myform" scroll="no" icon="sp_favicon.ico" singleInstance="yes" reseize="no">
     <title>IdentityIQ Launcher</title>
 </head>
 <body>
 
     <script language='javascript' >
-        window.resizeTo(800,600);
-        function validateForm() {
+        onload = function() {
+            var cmdline = document.getElementById("myform").commandLine;
+            var args = cmdline.split(" ");
+            var launches = args[1].substring(1, args[1].length - 1);
+            window.resizeTo(800,600);
+            window.moveTo((screen.width-800)/2,(screen.height-600)/2);
+            window.focus();
+            if (launches > 1) {
+                alert("Invalid username or password. Please try again.");
+            }
+        };
+        function parseCommandline(cmdline) {
+            var rx = /"[^"]+"\s*?|\S+\s*?/g;
+            var args = [];
+            var match;
+            while (match = rx.exec(cmdline)) {
+                if (match[0].charAt(0) === '"') {
+                    args.push(match[0].substring(1, match[0].length - 1));
+                } else {
+                    args.push(match[0]);
+                }
+            }
+            return args;
+        }
+        function validateForm(button) {
             var a = document.getElementById("iiqVersion").value;
             var b = document.getElementById("iiqPort").value;
             var c = document.getElementById("mysqlPort").value;
             var d = document.getElementById("username").value;
             var e = document.getElementById("pass").value;
-            if ((a == null || a == "") || (b == null || b == "") || (c == null || c == "") || (d == null || d == "")  || (e == null || e == "")) {
+            if (((a == null || a == "") || (b == null || b == "") || (c == null || c == "") || (d == null || d == "")  || (e == null || e == "")) && button == "submit") {
                 alert("Please fill in all fields");
                 return false;
             }
-            else {
-                pipeText();
+            else if (button == "cancel") {
+                a = "a"; b="b"; c="c"; d="d"; e="e";        //can't return empty values to the batch script, they will be ignored
             }
+            pipeText(a, b, c, d, e, button);
         }
-        function pipeText() {
+        function pipeText(a, b, c, d, e, button) {
+            var values = [a,b,c,d,e,button].join('|');
             new ActiveXObject("Scripting.FileSystemObject")
             .GetStandardStream(1)
-            .WriteLine(
-                [ // Array of elements to return joined with the delimiter
-                    document.getElementById("iiqVersion").value,
-                    document.getElementById("iiqPort").value,
-                    document.getElementById("mysqlPort").value,
-                    document.getElementById("username").value,
-                    document.getElementById("pass").value
-                ].join('|')
-            );
+            .WriteLine(values);
             window.close();
         }
     </script>
@@ -91,44 +135,47 @@ timeout /t 10
             resize: vertical;
         }
 
-        input[type=submit] {
-            background-color: #04AA6D;
+        .button {
+            background-color: #cc27b0;
             color: white;
             padding: 12px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-left: 6px;
+            font-weight: bold;
         }
 
-        input[type=submit]:hover {
-            background-color: #45a049;
+        .submit {
+            margin-left: 18px;
         }
 
         .container {
-            background-color: #0071ce;
+            background-color: #0033a1;
             background-repeat: no-repeat;
             padding: 20px;
         }
     </style>
     <div class="container">
-        <form action="/action_page.php">
+        <form>
             <h2>IdentityIQ Details</h2>
             <label for="iiqVersion">Please specify the version and patch number of IIQ (i.e. 8.3p1) you wish to install:</label><br>
-            <input style="width: 375px;" type='text' name='iiqVersion' value='8.3p1' required><br>
+            <input style="width: 375px;" type="text" name="iiqVersion" value="8.3p1" required><br>
             <br>
             <label for="iiqPort">Please specify the port for IIQ:</label><br>
-            <input style="width: 375px;" type='text' name='iiqPort' value='7070' required><br>
+            <input style="width: 375px;" type="text" name="iiqPort" value="7070" required><br>
             <br>
             <label for="mysqlPort">Please specify the port for MySQL:</label><br>
-            <input style="width: 375px;" type='text' name='mysqlPort' value='3307' required><br>
+            <input style="width: 375px;" type="text" name="mysqlPort" value="3307" required><br>
             <br>
             <label for="username">Enter username:</label><br>
-            <input style="width: 375px;" type='text' name='username' value='edgile' required><br>
+            <input style="width: 375px;" type="text" name="username" value="edgile" required><br>
             <br>
             <label for="pass">Enter password:</label><br>
-            <input style="width: 375px;" type='text' name='pass' required><br>
+            <input style="width: 375px;" type="password" name="pass" required><br>
             <br>
-            <button onclick='return validateForm()'>Submit</button>
+            <button class="button cancel" onclick="return validateForm('cancel');">Cancel</button>
+            <button class="button submit" onclick="return validateForm('submit');">Submit</button>
         </form>
     </div>
 </body>
