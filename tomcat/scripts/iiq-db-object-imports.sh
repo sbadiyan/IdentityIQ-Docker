@@ -5,4 +5,4 @@ echo "Initializing the database"
 ./iiq console -c "import init-lcm.xml"
 echo "Database initialized"
 echo "Applying patch"
-./iiq patch 8.3p1
+./iiq patch $IIQ_VERSION

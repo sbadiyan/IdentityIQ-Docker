@@ -4,7 +4,7 @@ ATTEMPTS=0
 
 until mysql -u root -h db -e "use identityiq" -proot &> /dev/null
 do
-  echo "Waiting for identityiq database creation"
+  echo "Waiting for identityiq database creation. This may take a few minutes."
   echo "Attempts: $ATTEMPTS"
   sleep 10
   ATTEMPTS=$((ATTEMPTS+1))
@@ -32,11 +32,11 @@ echo "Starting tomcat"
 cd /usr/local/tomcat/bin
 startup.sh
 
-echo "Waiting for IdentityIQ startup...Listening on port $IIQ_PORT"
+echo "Waiting for IdentityIQ startup..."
 sleep 10
 
-while ! netstat -an | grep "$IIQ_PORT .*LISTEN"; do
-    echo "Waiting for IdentityIQ startup...Listening on port $IIQ_PORT"
+while ! netstat -an | grep "8080 .*LISTEN" &> /dev/null; do
+    echo "Waiting for IdentityIQ startup..."
     sleep 5
 done
 echo "Done"
