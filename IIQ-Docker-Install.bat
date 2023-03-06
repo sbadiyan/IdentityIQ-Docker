@@ -1,10 +1,10 @@
 <!-- :
 @echo off 
 
-set /a LAUNCHES = 0
+set "ERROR="
+
 :open-form
-set /a LAUNCHES = LAUNCHES + 1
-for /f "tokens=1-6 delims=|" %%a in ('mshta.exe "%~f0" "%LAUNCHES%"') do (
+for /f "tokens=1-6 delims=|" %%a in ('mshta.exe "%~f0" "%ERROR%"') do (
     set "IIQ_VERSION=%%a"
     set "IIQ_PORT=%%b"
     set "MYSQL_PORT=%%c"
@@ -20,18 +20,14 @@ if "%BUTTON_CLICKED%" == "cancel" (
     exit /B
 )
 
-if [%BUTTON_CLICKED%] == [] (
-    exit /B
+if [%ERROR%] == [] (
+    wsl --update
+    docker --version > nul 2>&1
+    if not %ERRORLEVEL% == 0 (
+        echo Docker must be installed and running. Please visit https://www.docker.com to download the latest version.
+        exit /B
+    ) else echo Docker is installed.
 )
-
-wsl --update
-
-docker --version > nul 2>&1
-
-if not %ERRORLEVEL% == 0 (
-    echo Docker must be installed and running. Please visit https://www.docker.com to download the latest version.
-    exit /B
-) else echo Docker is installed.
 
 docker stats --no-stream > nul 2>&1
 if not %ERRORLEVEL% == 0 (
@@ -46,12 +42,32 @@ if not %ERRORLEVEL% == 0 (
     goto :wait-for-docker 
 )
 
+netstat -o -n -a | find "LISTENING" | find ":%IIQ_PORT% " > nul
+if "%ERRORLEVEL%" equ "0" (
+  echo The port you selected for IIQ is already in use on your machine. Please enter a different port.
+  set "ERROR=IIQ"
+  goto :open-form
+)
+
+netstat -o -n -a | find "LISTENING" | find ":%MYSQL_PORT% " > nul
+if "%ERRORLEVEL%" equ "0" (
+    echo The port you selected for MySQL is already in use on your machine. Please enter a different port.
+    set "ERROR=MYSQL"
+    goto :open-form
+)
+
 docker login -u %USERNAME% -p %PASS% identityiqdocker.azurecr.io > nul 2>&1
 if not %ERRORLEVEL% == 0 (
     echo Invalid username or password. Please try again.
+    set "ERROR=PASS"
     goto :open-form
 )
+
 echo Login succeeded
+mkdir IIQ-%IIQ_VERSION%
+copy .env %~dp0\IIQ-%IIQ_VERSION%
+copy docker-compose.yml %~dp0\IIQ-%IIQ_VERSION%
+cd IIQ-%IIQ_VERSION%
 docker compose up
 
 timeout /t 30
@@ -59,7 +75,7 @@ timeout /t 30
 
 <html>
 <head>
-    <HTA:APPLICATION id="myform" scroll="no" icon="sp_favicon.ico" singleInstance="yes" reseize="no">
+    <HTA:APPLICATION id="myform" SysMenu="no" scroll="no" icon="sp_favicon.ico" singleInstance="yes" reseize="no">
     <title>IdentityIQ Launcher</title>
 </head>
 <body>
@@ -68,12 +84,18 @@ timeout /t 30
         onload = function() {
             var cmdline = document.getElementById("myform").commandLine;
             var args = cmdline.split(" ");
-            var launches = args[1].substring(1, args[1].length - 1);
+            var error = args[1].substring(1, args[1].length - 1);
             window.resizeTo(800,600);
             window.moveTo((screen.width-800)/2,(screen.height-600)/2);
             window.focus();
-            if (launches > 1) {
+            if (error === "PASS") {
                 alert("Invalid username or password. Please try again.");
+            }
+            else if (error === "IIQ") {
+                alert("The port you selected for IIQ is already in use on your machine. Please enter a different port.");
+            }
+            else if (error === "MYSQL") {
+                alert("The port you selected for MySQL is already in use on your machine. Please enter a different port.");
             }
         };
         function parseCommandline(cmdline) {
@@ -95,11 +117,11 @@ timeout /t 30
             var c = document.getElementById("mysqlPort").value;
             var d = document.getElementById("username").value;
             var e = document.getElementById("pass").value;
-            if (((a == null || a == "") || (b == null || b == "") || (c == null || c == "") || (d == null || d == "")  || (e == null || e == "")) && button == "submit") {
+            if (((a === null || a === "") || (b === null || b === "") || (c === null || c === "") || (d === null || d === "")  || (e === null || e === "")) && button === "submit") {
                 alert("Please fill in all fields");
                 return false;
             }
-            else if (button == "cancel") {
+            else if (button === "cancel") {
                 a = "a"; b="b"; c="c"; d="d"; e="e";        //can't return empty values to the batch script, they will be ignored
             }
             pipeText(a, b, c, d, e, button);
@@ -160,7 +182,7 @@ timeout /t 30
         <form>
             <h2>IdentityIQ Details</h2>
             <label for="iiqVersion">Please specify the version and patch number of IIQ (i.e. 8.3p1) you wish to install:</label><br>
-            <input style="width: 375px;" type="text" name="iiqVersion" value="8.3p1" required><br>
+            <input style="width: 375px;" type="text" name="iiqVersion" value="8.3p2" required><br>
             <br>
             <label for="iiqPort">Please specify the port for IIQ:</label><br>
             <input style="width: 375px;" type="text" name="iiqPort" value="7070" required><br>
