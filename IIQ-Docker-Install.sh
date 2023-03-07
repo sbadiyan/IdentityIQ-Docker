@@ -1,6 +1,8 @@
 #!/bin/bash
 
 IIQ_VERSION=""
+IIQ_BASE=""
+IIQ_PATCH=""
 IIQ_PORT=""
 MYSQL_PORT=""
 USERNAME=""
@@ -48,6 +50,15 @@ if (test "$IIQ_VERSION" = "")
 fi
 
 echo "IIQ_VERSION=$IIQ_VERSION" >> $ENVFILE
+
+if [[ $IIQ_VERSION == *"p"* ]]; then
+    IIQ_BASE=$(echo $IIQ_VERSION | cut -d 'p' -f 1)
+    IIQ_PATCH="p$(echo $IIQ_VERSION | cut -d 'p' -f 2)"
+else
+    IIQ_BASE=$IIQ_VERSION
+fi
+echo "IIQ_BASE=$IIQ_BASE" >> $ENVFILE
+echo "IIQ_PATCH=$IIQ_PATCH" >> $ENVFILE
 
 if test $? -eq 0; then
         echo 'IIQ version set to' $IIQ_VERSION >&2
