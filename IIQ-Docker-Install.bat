@@ -1,5 +1,6 @@
 <!-- :
 @echo off 
+setlocal EnableDelayedExpansion
 
 set "ERROR="
 
@@ -14,6 +15,17 @@ for /f "tokens=1-6 delims=|" %%a in ('mshta.exe "%~f0" "%ERROR%"') do (
 )
 
 echo IIQ_VERSION=%IIQ_VERSION% > .env
+if "%IIQ_VERSION:p=%" neq "%IIQ_VERSION%" (
+    for /f "tokens=1,2 delims=p" %%a in ("%IIQ_VERSION%") do (
+        set "IIQ_BASE=%%a"
+        set "IIQ_PATCH=p%%b"
+    )
+) else (
+    set "IIQ_BASE=%IIQ_VERSION%"
+    set "IIQ_PATCH="
+)
+echo IIQ_BASE=!IIQ_BASE!>> .env
+echo IIQ_PATCH=!IIQ_PATCH!>> .env
 echo IIQ_PORT=%IIQ_PORT% >> .env
 echo MYSQL_PORT=%MYSQL_PORT% >>  .env
 if "%BUTTON_CLICKED%" == "cancel" (
