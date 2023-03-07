@@ -19,7 +19,7 @@ RUN rm identityiq-$IIQ_VERSION$IIQ_PATCH.jar
 
 COPY ./iiq/iiq.properties ./WEB-INF/classes
 
-WORKDIR /user/local/iiq
+WORKDIR /usr/local/iiq
 COPY ./iiq/source .
 
 RUN apt update
