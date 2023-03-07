@@ -20,7 +20,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -56,7 +56,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -92,7 +92,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -128,7 +128,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -164,7 +164,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -200,7 +200,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -236,7 +236,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -272,7 +272,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -308,7 +308,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -344,7 +344,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -380,7 +380,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -416,7 +416,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
@@ -452,7 +452,7 @@
         <entry key="noAutoCreateScopes" value="false"/>
         <entry key="noNeedsRefresh" value="false"/>
         <entry key="noOptimizeReaggregation" value="false"/>
-        <entry key="promoteManagedAttributes" value="false"/>
+        <entry key="promoteManagedAttributes" value="true"/>
         <entry key="refreshScorecard" value="false"/>
         <entry key="sequential" value="false"/>
         <entry key="taskCompletionEmailNotify" value="Disabled"/>
