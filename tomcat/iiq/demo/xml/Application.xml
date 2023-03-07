@@ -1,0 +1,1181 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<sailpoint>
+  <Application authoritative="true" connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="Training Identities" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/TrainingIdentities.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="managerCorrelationFilter">
+          <value>
+            <Filter operation="EQ" property="name" value="manager"/>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="id" identityAttribute="id" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition name="id" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="fname" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="lname" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="email" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="division" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="department" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="status" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="employeeType" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="title" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="jobCode" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="manager" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="Accounting Software" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/AccountingSoftware.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+  
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="Active Directory" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/Active Directory.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="Building Access" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/Building Access.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="Call System Database" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/Call System Database.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="CRM" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/CRM.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="DevOps Tool" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/DevOpsTool.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="Email System" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/EmailSystem.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="HRIS" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/HRIS.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="Inventory System" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/InventorySystem.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="Mainframe" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/Mainframe.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="Pipeline Manager" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/PipelineManager.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+  <Application connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="SIEM" profileClass="" type="DelimitedFile">
+    <Attributes>
+      <Map>
+        <entry key="PassphraseForPrivateKey"/>
+        <entry key="PrivateKeyFilePath"/>
+        <entry key="afterProvisioningRule"/>
+        <entry key="beforeProvisioningRule"/>
+        <entry key="compositeDefinition"/>
+        <entry key="delimiter" value=","/>
+        <entry key="file" value="/usr/local/iiq/demo/data/SIEM.csv"/>
+        <entry key="filetransport" value="local"/>
+        <entry key="filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="ftpsAuthMethod" value="password"/>
+        <entry key="ftpsClientCertificateFilePath"/>
+        <entry key="ftpsClientCertificatePassphrase"/>
+        <entry key="group.filetransport" value="local"/>
+        <entry key="group.filterEmptyRecords">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="group.partitionMode" value="auto"/>
+        <entry key="hasHeader">
+          <value>
+            <Boolean>true</Boolean>
+          </value>
+        </entry>
+        <entry key="isCaseInsensitiveMerge">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="isSortedByIndexColumn">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="mergeRows">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+        <entry key="nativeChangeDetectionAttributes"/>
+        <entry key="nativeChangeDetectionEnabled">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="nativeChangeDetectionOperations"/>
+        <entry key="parseType" value="delimited"/>
+        <entry key="partitionMode" value="auto"/>
+        <entry key="port"/>
+        <entry key="sftpAuthMethod" value="password"/>
+        <entry key="stopIfLineHasWrongColumnLength">
+          <value>
+            <Boolean></Boolean>
+          </value>
+        </entry>
+        <entry key="sysDescriptions">
+          <value>
+            <Map>
+              <entry key="en_US"/>
+            </Map>
+          </value>
+        </entry>
+        <entry key="templateApplication" value="DelimitedFile Template"/>
+      </Map>
+    </Attributes>
+    <Owner>
+      <Reference class="sailpoint.object.Identity" name="spadmin"/>
+    </Owner>
+    <Schemas>
+      <Schema displayAttribute="account" identityAttribute="account" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+        <AttributeDefinition entitlement="true" managed="true" name="group" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="account" type="string">
+          <Description></Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+
+
+</sailpoint>

@@ -4,7 +4,7 @@ ATTEMPTS=0
 
 until mysql -u root -h db -e "use identityiq" -proot &> /dev/null
 do
-  echo "Waiting for identityiq database creation"
+  echo "Waiting for identityiq database creation. This may take a few minutes."
   echo "Attempts: $ATTEMPTS"
   sleep 10
   ATTEMPTS=$((ATTEMPTS+1))
@@ -32,15 +32,24 @@ echo "Starting tomcat"
 cd /usr/local/tomcat/bin
 startup.sh
 
-echo "Waiting for IdentityIQ startup...Listening on port $IIQ_PORT"
+echo "Waiting for IdentityIQ startup..."
 sleep 10
 
-while ! netstat -an | grep "$IIQ_PORT .*LISTEN"; do
-    echo "Waiting for IdentityIQ startup...Listening on port $IIQ_PORT"
+while ! netstat -an | grep "8080 .*LISTEN" &> /dev/null; do
+    echo "Waiting for IdentityIQ startup..."
     sleep 5
 done
 echo "Done"
 echo "IdentityIQ can be accessed at http://localhost:$IIQ_PORT/identityiq"
+
+#Kick off the initial load task
+cd /usr/local/tomcat/webapps/identityiq/WEB-INF/bin
+tmux new-session -d -s iiq
+tmux send-keys -t iiq "./iiq console" C-m
+sleep 10
+tmux send-keys -t iiq "run 'Initial Load'" C-m
+sleep 600
+tmux send-keys -t iiq "exit" C-m
 
 #do nothing until stopped
 tail -f /dev/null

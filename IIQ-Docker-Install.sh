@@ -1,6 +1,8 @@
 #!/bin/bash
 
 IIQ_VERSION=""
+IIQ_BASE=""
+IIQ_PATCH=""
 IIQ_PORT=""
 MYSQL_PORT=""
 USERNAME=""
@@ -32,7 +34,7 @@ IIQ_VERSION=$(osascript -e '
 tell application "Finder"
     activate
     try
-        display dialog "Please specify the version and patch number of IIQ (i.e. 8.3p1) you wish to install:" with title "Select IIQ version" default answer "8.3p1"
+        display dialog "Please specify the version and patch number of IIQ (i.e. 8.3p1) you wish to use:" with title "Select IIQ version" default answer "8.3p2"
         set IIQ_VERSION to the (text returned of the result)
     on error number -128
         set IIQ_VERSION to ""
@@ -49,6 +51,15 @@ fi
 
 echo "IIQ_VERSION=$IIQ_VERSION" >> $ENVFILE
 
+if [[ $IIQ_VERSION == *"p"* ]]; then
+    IIQ_BASE=$(echo $IIQ_VERSION | cut -d 'p' -f 1)
+    IIQ_PATCH="p$(echo $IIQ_VERSION | cut -d 'p' -f 2)"
+else
+    IIQ_BASE=$IIQ_VERSION
+fi
+echo "IIQ_BASE=$IIQ_BASE" >> $ENVFILE
+echo "IIQ_PATCH=$IIQ_PATCH" >> $ENVFILE
+
 if test $? -eq 0; then
         echo 'IIQ version set to' $IIQ_VERSION >&2
 else
@@ -60,7 +71,7 @@ IIQ_PORT=$(osascript -e '
 tell application "Finder"
     activate
     try
-        display dialog "Please specify the port for IIQ:" with title "Select IIQ port" default answer "8080"
+        display dialog "Please specify the port for IIQ:" with title "Select IIQ port" default answer "7070"
         set IIQ_PORT to the (text returned of the result)
     on error number -128
         set IIQ_PORT to ""
@@ -68,37 +79,71 @@ tell application "Finder"
     return IIQ_PORT
 end tell')
 
+while netstat -an | grep "$IIQ_PORT .*LISTEN" &> /dev/null; do
+    if (test "$IIQ_PORT" = "")
+        then
+            echo "The IIQ port cannot be blank"
+            exit 1;
+    fi
+    echo "The port you selected for IIQ is already in use on your machine. Please enter a different port."
+    IIQ_PORT=$(osascript -e '
+    tell application "Finder"
+        activate
+        try
+            display dialog "Please specify the port for IIQ:" with title "Enter IIQ port" default answer "7070"
+            set IIQ_PORT to the (text returned of the result)
+        on error number -128
+            set IIQ_PORT to ""
+        end try
+        return IIQ_PORT
+    end tell')
+done
+
 echo "IIQ port set to" $IIQ_PORT
 
-if (test "$IIQ_PORT" = "")
-    then
-        echo "The port cannot be blank" >&2
-        exit 1;
-fi
 
 echo "IIQ_PORT=$IIQ_PORT" >> $ENVFILE
 
 MYSQL_PORT=$(osascript -e '
-tell application "Finder"
-    activate
-    try
-        display dialog "Please specify the port for MySQL:" with title "Select MySQL port" default answer "3306"
-        set MYSQL_PORT to the (text returned of the result)
-    on error number -128
-        set MYSQL_PORT to ""
-    end try
-    return MYSQL_PORT
-end tell')
+    tell application "Finder"
+        activate
+        try
+            display dialog "Please specify the port for MySQL:" with title "Enter MySQL port" default answer "3307"
+            set MYSQL_PORT to the (text returned of the result)
+        on error number -128
+            set MYSQL_PORT to ""
+        end try
+        return MYSQL_PORT
+    end tell')
+
+while netstat -an | grep "$MYSQL_PORT .*LISTEN" &> /dev/null; do
+    if (test "$MYSQL_PORT" = "")
+        then
+            echo "The MySQL port cannot be blank"
+            exit 1;
+    fi
+    echo "The port you selected for MySQL is already in use on your machine. Please enter a different port."
+    MYSQL_PORT=$(osascript -e '
+    tell application "Finder"
+        activate
+        try
+            display dialog "Please specify the port for MySQL:" with title "Select MySQL port" default answer "3307"
+            set MYSQL_PORT to the (text returned of the result)
+        on error number -128
+            set MYSQL_PORT to ""
+        end try
+        return MYSQL_PORT
+    end tell')
+done
 
 echo "MySQL port set to" $MYSQL_PORT
 
-if (test "$MYSQL_PORT" = "")
-    then
-        echo "The MySQL port cannot be blank" >&2
-        exit 1;
-fi
-
 echo "MYSQL_PORT=$MYSQL_PORT" >> $ENVFILE
+
+mkdir IIQ-$IIQ_VERSION
+cp .env ./IIQ-$IIQ_VERSION
+cp docker-compose.yml ./IIQ-$IIQ_VERSION
+cd IIQ-$IIQ_VERSION
 
 if (! /usr/local/bin/docker compose up) 
     then
