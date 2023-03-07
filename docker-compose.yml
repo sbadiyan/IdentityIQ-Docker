@@ -4,7 +4,7 @@ services:
         depends_on:
             - db
         image: identityiqdocker.azurecr.io/tomcat-iiq:${IIQ_VERSION}
-        #build: ./tomcat
+        build: ./tomcat
         ports:
             - "${IIQ_PORT}:8080"
         environment:
@@ -19,12 +19,15 @@ services:
     db:
         container_name: MySQL-IIQ-${IIQ_VERSION}
         image: identityiqdocker.azurecr.io/mysql-iiq:${IIQ_VERSION}
-        #build: ./mysql
+        build: ./mysql
         ports:
             - "${MYSQL_PORT}:3306"
         environment:
             MYSQL_ROOT: root
             MYSQL_ROOT_PASSWORD: root
+            IIQ_VERSION: ${IIQ_VERSION}
+            IIQ_BASE: ${IIQ_BASE}
+            IIQ_PATCH: ${IIQ_PATCH}
         cap_add:
             - SYS_NICE
         volumes:
