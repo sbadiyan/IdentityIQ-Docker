@@ -44,7 +44,7 @@
         </entry>
         <entry key="managerCorrelationFilter">
           <value>
-            <Filter operation="EQ" property="name" value="id"/>
+            <Filter operation="EQ" property="name" value="manager"/>
           </value>
         </entry>
         <entry key="mergeRows">
