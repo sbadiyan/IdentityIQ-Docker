@@ -42,5 +42,14 @@ done
 echo "Done"
 echo "IdentityIQ can be accessed at http://localhost:$IIQ_PORT/identityiq"
 
+#Kick off the initial load task
+cd /usr/local/tomcat/webapps/identityiq/WEB-INF/bin
+tmux new-session -d -s iiq
+tmux send-keys -t iiq "./iiq console" C-m
+sleep 10
+tmux send-keys -t iiq "run 'Initial Load'" C-m
+sleep 600
+tmux send-keys -t iiq "exit" C-m
+
 #do nothing until stopped
 tail -f /dev/null
