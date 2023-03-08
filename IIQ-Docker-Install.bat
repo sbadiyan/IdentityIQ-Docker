@@ -89,8 +89,6 @@ timeout /t 30
 <head>
     <HTA:APPLICATION id="myform" SysMenu="no" scroll="no" icon="sp_favicon.ico" singleInstance="yes" reseize="no">
     <title>IdentityIQ Launcher</title>
-</head>
-<body>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -140,6 +138,8 @@ timeout /t 30
             padding: 10px;
         }
     </style>
+</head>
+<body>
     <div class="container">
         <form id="form">
             <h1>IdentityIQ Launcher Form</h1>
@@ -162,7 +162,7 @@ timeout /t 30
             <button class="button submit" onclick="return validateForm('submit');">Submit</button>
         </form>
     </div>
-        <script language='javascript' >
+    <script language='javascript' >
         onload = function() {
             var cmdline = document.getElementById("myform").commandLine;
             var args = cmdline.split(" ");
@@ -170,7 +170,7 @@ timeout /t 30
             var form = document.getElementById("form");
             var width = form.offsetWidth;
             var height = form.offsetHeight;
-            window.resizeTo(750, height + 100); // add some extra padding
+            window.resizeTo(screen.width * .33, screen.height *.57);
             window.moveTo((screen.width - 800) / 2, (screen.height - (height + 100)) / 2);
 
             window.focus();
