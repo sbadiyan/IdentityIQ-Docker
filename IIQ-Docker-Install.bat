@@ -91,14 +91,88 @@ timeout /t 30
     <title>IdentityIQ Launcher</title>
 </head>
 <body>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background-color: #0033a1;
+            margin-top: 0px;
+            margin-bottom: 10px;
+            overflow: auto;
+        }
+        h1 {
+            font-weight: bold;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, textarea {
+            line-height: 20px;
+            height: 25px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            resize: vertical;
+        }
 
-    <script language='javascript' >
+        .button {
+            background-color: #cc27b0;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 6px;
+            font-weight: bold;
+        }
+
+        .submit {
+            margin-left: 18px;
+        }
+
+        .container {
+            padding: 10px;
+        }
+    </style>
+    <div class="container">
+        <form id="form">
+            <h1>IdentityIQ Launcher Form</h1>
+            <label for="iiqVersion">Please specify the version and patch number of IIQ (e.g. 8.3p1) you wish to install:</label><br>
+            <input style="width: 375px;" type="text" name="iiqVersion" value="8.3p2" required><br>
+            <br>
+            <label for="iiqPort">Please specify the port for IIQ:</label><br>
+            <input style="width: 375px;" type="text" name="iiqPort" value="7070" required><br>
+            <br>
+            <label for="mysqlPort">Please specify the port for MySQL:</label><br>
+            <input style="width: 375px;" type="text" name="mysqlPort" value="3307" required><br>
+            <br>
+            <label for="username">Enter username:</label><br>
+            <input style="width: 375px;" type="text" name="username" value="edgile" required><br>
+            <br>
+            <label for="pass">Enter password:</label><br>
+            <input style="width: 375px;" type="password" name="pass" required><br>
+            <br>
+            <button class="button cancel" onclick="return validateForm('cancel');">Cancel</button>
+            <button class="button submit" onclick="return validateForm('submit');">Submit</button>
+        </form>
+    </div>
+        <script language='javascript' >
         onload = function() {
             var cmdline = document.getElementById("myform").commandLine;
             var args = cmdline.split(" ");
             var error = args[1].substring(1, args[1].length - 1);
-            window.resizeTo(800,600);
-            window.moveTo((screen.width-800)/2,(screen.height-600)/2);
+            var form = document.getElementById("form");
+            var width = form.offsetWidth;
+            var height = form.offsetHeight;
+            window.resizeTo(750, height + 100); // add some extra padding
+            window.moveTo((screen.width - 800) / 2, (screen.height - (height + 100)) / 2);
+
             window.focus();
             if (error === "PASS") {
                 alert("Invalid username or password. Please try again.");
@@ -146,72 +220,6 @@ timeout /t 30
             window.close();
         }
     </script>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: white;
-            margin-top: 0px;
-            margin-bottom: 10px;
-        }
-        h2 {
-            font-weight: bold;
-        }
-        * {box-sizing: border-box;}
-
-        input[type=text], select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            resize: vertical;
-        }
-
-        .button {
-            background-color: #cc27b0;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 6px;
-            font-weight: bold;
-        }
-
-        .submit {
-            margin-left: 18px;
-        }
-
-        .container {
-            background-color: #0033a1;
-            background-repeat: no-repeat;
-            padding: 20px;
-        }
-    </style>
-    <div class="container">
-        <form>
-            <h2>IdentityIQ Details</h2>
-            <label for="iiqVersion">Please specify the version and patch number of IIQ (i.e. 8.3p1) you wish to install:</label><br>
-            <input style="width: 375px;" type="text" name="iiqVersion" value="8.3p2" required><br>
-            <br>
-            <label for="iiqPort">Please specify the port for IIQ:</label><br>
-            <input style="width: 375px;" type="text" name="iiqPort" value="7070" required><br>
-            <br>
-            <label for="mysqlPort">Please specify the port for MySQL:</label><br>
-            <input style="width: 375px;" type="text" name="mysqlPort" value="3307" required><br>
-            <br>
-            <label for="username">Enter username:</label><br>
-            <input style="width: 375px;" type="text" name="username" value="edgile" required><br>
-            <br>
-            <label for="pass">Enter password:</label><br>
-            <input style="width: 375px;" type="password" name="pass" required><br>
-            <br>
-            <button class="button cancel" onclick="return validateForm('cancel');">Cancel</button>
-            <button class="button submit" onclick="return validateForm('submit');">Submit</button>
-        </form>
-    </div>
 </body>
 
 </html>
