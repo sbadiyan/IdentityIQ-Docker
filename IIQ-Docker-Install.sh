@@ -34,7 +34,7 @@ IIQ_VERSION=$(osascript -e '
 tell application "Finder"
     activate
     try
-        display dialog "Please specify the version and patch number of IIQ (i.e. 8.3p1) you wish to use:" with title "Select IIQ version" default answer "8.3p2"
+        display dialog "Please specify the version and patch number of IIQ (e.g. 8.3p1) you wish to use:" with title "Select IIQ version" default answer "8.3p2"
         set IIQ_VERSION to the (text returned of the result)
     on error number -128
         set IIQ_VERSION to ""
