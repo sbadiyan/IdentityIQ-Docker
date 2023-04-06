@@ -5,13 +5,14 @@ setlocal EnableDelayedExpansion
 set "ERROR="
 
 :open-form
-for /f "tokens=1-6 delims=|" %%a in ('mshta.exe "%~f0" "%ERROR%"') do (
+for /f "tokens=1-7 delims=|" %%a in ('mshta.exe "%~f0" "%ERROR%"') do (
     set "IIQ_VERSION=%%a"
     set "IIQ_PORT=%%b"
     set "MYSQL_PORT=%%c"
     set "USERNAME=%%d"
     set "PASS=%%e"
-    set "BUTTON_CLICKED=%%f"
+    set "USE_DEMO_DATA=%%f"
+    set "BUTTON_CLICKED=%%g"
 )
 
 echo IIQ_VERSION=%IIQ_VERSION% > .env
@@ -28,6 +29,7 @@ echo IIQ_BASE=!IIQ_BASE!>> .env
 echo IIQ_PATCH=!IIQ_PATCH!>> .env
 echo IIQ_PORT=%IIQ_PORT% >> .env
 echo MYSQL_PORT=%MYSQL_PORT% >>  .env
+echo USE_DEMO_DATA=%USE_DEMO_DATA% >> .env
 if "%BUTTON_CLICKED%" == "cancel" (
     exit /B
 )
@@ -146,6 +148,9 @@ timeout /t 30
             <label for="iiqVersion">Please specify the version and patch number of IIQ (e.g. 8.3p1) you wish to install:</label><br>
             <input style="width: 375px;" type="text" name="iiqVersion" value="8.3p2" required><br>
             <br>
+            <label for="useDemoData">Would you like to include demo data with your install (Yes or No)?</label><br>
+            <input style="width: 375px;" type="text" name="useDemoData" value="Yes" required><br>
+            <br>
             <label for="iiqPort">Please specify the port for IIQ:</label><br>
             <input style="width: 375px;" type="text" name="iiqPort" value="7070" required><br>
             <br>
@@ -170,7 +175,7 @@ timeout /t 30
             var form = document.getElementById("form");
             var width = form.offsetWidth;
             var height = form.offsetHeight;
-            window.resizeTo(screen.width * .33, screen.height *.57);
+            window.resizeTo(screen.width * .33, screen.height *.67);
             window.moveTo((screen.width - 800) / 2, (screen.height - (height + 100)) / 2);
 
             window.focus();
@@ -203,17 +208,18 @@ timeout /t 30
             var c = document.getElementById("mysqlPort").value;
             var d = document.getElementById("username").value;
             var e = document.getElementById("pass").value;
-            if (((a === null || a === "") || (b === null || b === "") || (c === null || c === "") || (d === null || d === "")  || (e === null || e === "")) && button === "submit") {
+            var f = document.getElementById("useDemoData").value;
+            if (((a === null || a === "") || (b === null || b === "") || (c === null || c === "") || (d === null || d === "")  || (e === null || e === "") || (f === null || f === "")) && button === "submit") {
                 alert("Please fill in all fields");
                 return false;
             }
             else if (button === "cancel") {
-                a = "a"; b="b"; c="c"; d="d"; e="e";        //can't return empty values to the batch script, they will be ignored
+                a = "a"; b="b"; c="c"; d="d"; e="e"; f="f";        //can't return empty values to the batch script, they will be ignored
             }
-            pipeText(a, b, c, d, e, button);
+            pipeText(a, b, c, d, e, f, button);
         }
-        function pipeText(a, b, c, d, e, button) {
-            var values = [a,b,c,d,e,button].join('|');
+        function pipeText(a, b, c, d, e, f, button) {
+            var values = [a,b,c,d,e,f,button].join('|');
             new ActiveXObject("Scripting.FileSystemObject")
             .GetStandardStream(1)
             .WriteLine(values);
