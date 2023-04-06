@@ -12,12 +12,12 @@ RUN mkdir -p /usr/local/tomcat/webapps/identityiq
 WORKDIR /usr/local/tomcat/webapps/identityiq
 #Copy and expand the war file
 COPY ./iiq/$IIQ_VERSION/identityiq.war .
+COPY ./iiq/$IIQ_VERSION/identityiq-$IIQ_VERSION$IIQ_PATCH.jar .
 RUN jar -xvf identityiq.war
 RUN rm identityiq.war
 
 #Copy and expand the patch file
 RUN if [ -n "$IIQ_PATCH" ]; then \
-        COPY ./iiq/$IIQ_VERSION/identityiq-$IIQ_VERSION$IIQ_PATCH.jar . && \
         jar xf identityiq-$IIQ_VERSION$IIQ_PATCH.jar && \
         rm identityiq-$IIQ_VERSION$IIQ_PATCH.jar; \
     fi
@@ -45,6 +45,7 @@ COPY ./scripts/iiq-db-object-imports.sh /usr/local/bin/iiq-db-object-imports.sh
 RUN chmod +x /usr/local/bin/iiq-db-object-imports.sh
 
 #Deployment commmands
+#update this file and the .env file with the desired version number
 #docker login
 #docker compose build --pull
 #docker compose push

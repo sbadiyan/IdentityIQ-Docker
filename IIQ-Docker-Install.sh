@@ -67,6 +67,25 @@ else
         exit 1
 fi
 
+USE_DEMO_DATA=$(osascript -e '
+tell application "Finder"
+    activate
+    try
+        display dialog "Would you like to include demo data with your install (Yes or No)?" with title "Include Demo Data" default answer "Yes"
+        set USE_DEMO_DATA to the (text returned of the result)
+    on error number -128
+        set USE_DEMO_DATA to "Yes"
+    end try
+    return USE_DEMO_DATA
+end tell')
+
+if (test "$USE_DEMO_DATA" = "")
+    then
+        USE_DEMO_DATA="No"
+fi
+
+echo "USE_DEMO_DATA=$USE_DEMO_DATA" >> $ENVFILE
+
 IIQ_PORT=$(osascript -e '
 tell application "Finder"
     activate

@@ -10,6 +10,7 @@ services:
         environment:
             IIQ_PORT: ${IIQ_PORT}
             IIQ_VERSION: ${IIQ_VERSION}
+            USE_DEMO_DATA: ${USE_DEMO_DATA}
         command: ["/home/mysql-ping.sh"]
         volumes:
             - db_vol:/var/lib/mysql
